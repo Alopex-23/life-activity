@@ -1,0 +1,38 @@
+*{margin:0;padding: 0;font-family: '微软雅黑';}
+body{background: #fff;}
+ul{list-style: none;}
+a{text-decoration: none;color:#333;}
+img{border:none;}
+.fl{float:left;_display:inline;}
+.fr{float:right;_display:inline;}
+.pr{position: relative;}
+.pa{position: absolute;}
+.none{display: none;}
+.clearfix:before,.clearfix:after{content:"";display:table;}
+.clearfix:after{clear:both;}
+.clearfix{*zoom:1;}
+
+.main{width:350px;margin:27px auto;padding:5px;border:2px #d8d8d8 solid;color:#333;}
+.menu{font-size: 14px;}
+.select{width:80px;height:25px;line-height:25px;border:0px;cursor: default;}
+.select-text{text-align: center;}
+/*.select-text:hover{box-shadow: 1px 1px 0 0 #d8d8d8 inset;}*/
+.select div.current{box-shadow: 1px 1px 0 0 #d8d8d8 inset;}
+.month{border-left:none;border-right:none;}
+.select-list{left:-1px;top:25px;width: 80px;max-height:360px;background: #fff;border:1px #d8d8d8 solid;overflow: auto;}
+.select-list li{height: 30px;line-height: 30px;text-indent: 10px;cursor: pointer;}
+.select-list li.selected{background: #d8d8d8;}
+.select-list li.on{background: #d8d8d8;}
+.select-prev,.select-next{width:20px;height: 20px;margin-left:20px;line-height: 25px;text-align: center;cursor: pointer;}
+.select-next{margin:0;}
+.select-today{width:80px;height: 25px;margin-left:40px;line-height: 25px;text-align: center;border:1px #d8d8d8 solid;cursor: pointer;}
+.select-prev:hover,.select-next:hover,.select-today:hover{border:1px #D8D8D8 solid;}
+.select-prev:active,.select-next:active,.select-today:active{background: #f0f0f0;box-shadow: 1px 1px 1px #c7c7c7 inset;}
+.time{height: 25px;margin-left:10px;line-height: 25px;}
+.title{height:35px;font-size: 14px;margin-top:10px;border-top:1px #57abff solid;}
+.title li{float:left;width:50px;height:35px;line-height: 35px;text-align: center;}
+.table li{float:left;width:50px;height:40px;font-size: 14px;cursor: pointer;}
+.table li span{display: block;width:43px;height:35px;line-height: 35px;text-align: center;border:2px #fff solid;}
+.table li span.on{border:2px #fb0 solid;}
+.table li span.today{background: #fb0;border:2px #fb0 solid;border-radius:50%;color:#fff;}
+
