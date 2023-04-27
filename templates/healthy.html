@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>幸福人生</title>
+
+    <link rel="icon" href="https://tse2-mm.cn.bing.net/th/id/OIP-C.HhLTCpoiMiiBbkGed_MddQHaG9?w=222&h=209&c=7&r=0&o=5&dpr=1.3&pid=1.7" sizes="16*16">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!--echarts图表-->
+    <script src="{% static 'js/echarts.js' %}"></script>
+
+    <style>
+        .jumbotron{text-shadow: #4d6073 0 0 2px;
+            color: white; padding: 20px;transition: all 1s;
+            background: linear-gradient(40deg,#5589c5,#a1cef8);
+            box-shadow: 4px 4px 4px 4px rgba(203, 216, 227, 0.2);}
+        .jumbotron:hover{color: rgb(41, 41, 41);}
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/life/user_index/">幸福人生</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>广应科大表哥</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天23：02</p>
+                                        <p>投稿请联系我</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong> 玲娜贝儿</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>昨天19：56</p>
+                                        <p>谢谢可爱的你来迪士尼找我玩儿~</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>法外狂徒——张三</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天1:07</p>
+                                        <p>今年的法考好难呐！！！</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">阅读更多新消息</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/life/charts/">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="/life/plan/">
+                                <div>
+                                    <p>
+                                        <strong>日程计划</strong>
+                                        <span class="pull-right text-muted">40% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/comm/">
+                                <div>
+                                    <p>
+                                        <strong>人际交往</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/manage/">
+                                <div>
+                                    <p>
+                                        <strong>金钱管理</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/healthy/">
+                                <div>
+                                    <p>
+                                        <strong>健康生活</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/clothes/">
+                                <div>
+                                    <p>
+                                        <strong>穿衣推荐</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/eat/">
+                                <div>
+                                    <p>
+                                        <strong>饮食推荐</strong>
+                                        <span class="pull-right text-muted">60% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/talk/">
+                                <div>
+                                    <p>
+                                        <strong>自我对话</strong>
+                                        <span class="pull-right text-muted">80% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>用户 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/life/user_index/profile1/"><i class="fa fa-fw fa-user"></i> 资料</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> 收件箱</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> 设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/login_out/"><i class="fa fa-fw fa-power-off"></i> 登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="/life/user_index/"><i class="fa fa-fw fa-dashboard"></i> 主页</a>
+                    </li>
+                    <li>
+                        <a href="/life/plan/"><i class="fa fa-fw fa-bar-chart-o"></i>日程计划</a>
+                    </li>
+                    <li>
+                        <a href="/life/comm/"><i class="fa fa-fw fa-table"></i> 人际交往</a>
+                    </li>
+                    <li>
+                        <a href="/life/manage/"><i class="fa fa-fw fa-edit"></i> 金钱管理</a>
+                    </li>
+                    <li class="active">
+                        <a href="/life/healthy/"><i class="fa fa-fw fa-desktop"></i> 健康生活</a>
+                    </li>
+                    <li>
+                        <a href="/life/clothes/"><i class="fa fa-fw fa-wrench"></i> 穿衣推荐</a>
+                    </li>
+                    <li>
+                        <a href="/life/eat/"><i class="fa fa-fw fa-arrows-v"></i> 饮食推荐</a>
+                    </li>
+                    <li>
+                        <a href="/life/talk/"><i class="fa fa-fw fa-file"></i> 自我对话</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            健康生活<small>Healthy living</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="/life/user_index/">主页</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-desktop"></i> 健康生活
+                                	<!--setInterval实时显示时间-->
+                                <span id="time"></span>
+                                    <script>
+                                        function mytime(){
+                                            var a = new Date();
+                                            var b = a.toLocaleTimeString();
+                                            var c = a.toLocaleDateString();
+                                         document.getElementById("time").innerHTML = c+"&nbsp"+b;
+                                         }
+                                        setInterval(function() {mytime()},1000);
+                                    </script>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- 营销灰屏 -->
+                <div class="jumbotron">
+                    <h3>开启你的健康生活！</h3>
+                    <p>每个时刻都值得记录</p>
+                </div>
+
+
+                <div class="page-header">
+                    <h2>运动</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                记录
+                            </div>
+                            <form action="/life/healthy/" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row" style="height: 260px;">
+                                        <div class="col-lg-4">
+                                            <label>运动方式</label>
+                                            <select class="form-control" name="sport_type">
+                                                <option></option>
+                                                <option>步行</option>
+                                                <option>户外跑步</option>
+                                                <option>室内跑步</option>
+                                                <option>瑜伽</option>
+                                                <option>健身</option>
+                                                <option>骑行</option>
+                                                <option>高尔夫</option>
+                                                <option>跳绳</option>
+                                                <option>篮球</option>
+                                                <option>羽毛球</option>
+                                                <option>乒乓球</option>
+                                                <option>健美操</option>
+                                                <option>网球</option>
+                                                <option>足球</option>
+                                                <option>其他</option>
+                                            </select>
+                                            {% if msg %}
+                                                <div style="color:red">{{ msg }}</div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>运动时长(h)</label>
+                                            <input class="form-control" placeholder="格式如 1" name="sport_time">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>日期</label>
+                                            <input class="form-control" placeholder="2023-04-05" name="sport_date">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="submit" class="btn btn-default">确定</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                            </form>
+                        </div>
+                        <!-- /.col-lg-4 -->
+                    </div>
+
+                    <!--此处展示运动饼图-->
+                    <div class="col-lg-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                各项运动时间占比
+                            </div>
+                            <div class="panel-body">
+                                <div id="main12" style="width: 100%;height:328%;"></div>
+                                <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main12'));
+
+                                // 指定图表的配置项和数据
+                                var option = {
+  title: {
+    subtext: '本周运动时间占比(h)',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left'
+  },
+  series: [
+    {
+      name: 'Access From',
+      type: 'pie',
+      radius: '50%',
+      data: [
+        { value: {{ sport.a }}, name: '步行' },
+        { value: {{ sport.b }}, name: '户外跑步' },
+        { value: {{ sport.c }}, name: '室内跑步' },
+        { value: {{ sport.d }}, name: '瑜伽' },
+        { value: {{ sport.e }}, name: '健身' },
+        { value: {{ sport.f }}, name: '骑行' },
+        { value: {{ sport.g }}, name: '高尔夫' },
+        { value: {{ sport.h }}, name: '跳绳' },
+        { value: {{ sport.i }}, name: '篮球' },
+        { value: {{ sport.j }}, name: '羽毛球' },
+        { value: {{ sport.k }}, name: '乒乓球' },
+        { value: {{ sport.l }}, name: '健美操' },
+        { value: {{ sport.m }}, name: '网球' },
+        { value: {{ sport.n }}, name: '足球' },
+        { value: {{ sport.o }}, name: '其他' }
+      ],
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+                                    // 使用刚指定的配置项和数据显示图表。
+                                    myChart.setOption(option);
+                                    //根据窗口的大小变动图表 --- 重点
+                                    window.onresize = function(){
+                                        myChart.resize();
+                                    }
+                            </script>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-4 -->
+                    </div>
+                </div>
+
+
+                <div class="page-header">
+                    <h2>睡眠</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                记录
+                            </div>
+                            <form action="/life/healthy/" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row" style="height: 230px;">
+                                        <div class="col-lg-3">
+                                            <label>睡眠情况</label>
+                                            <select class="form-control" name="sleep_conditions">
+                                                <option></option>
+                                                <option value="一夜未眠">一夜未眠</option>
+                                                <option value="一夜无梦">一夜无梦</option>
+                                                <option value="有做噩梦">有做噩梦</option>
+                                            </select>
+                                            {% if msg1 %}
+                                                <div style="color:red">{{ msg1 }}</div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>入睡时间</label>
+                                            <input class="form-control" placeholder="格式如22:30" name="sleep_time">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>起床时间</label>
+                                            <input class="form-control" placeholder="格式如09:30" name="wakeup">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>日期</label>
+                                            <input class="form-control" placeholder="2023-04-05" name="sleep_date">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="submit" class="btn btn-default">确定</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                            </form>
+                        </div>
+
+                        <!-- /.col-lg-4 -->
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                近7日睡眠情况
+                            </div>
+                            <div class="panel-body">
+                                <div class="panel-body">
+                                 <div id="main" style="width: 100%;height:270%;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+let category = [];
+let dottedBase = +new Date();
+//此处连接数据库，来获取数据
+let barData = [{{ sleep.g }},{{ sleep.f }},{{ sleep.e }},{{ sleep.d }},{{ sleep.c }},{{ sleep.b }},{{ sleep.a }}];
+for (let i = 0; i < 7; i++) {
+  let date = new Date((dottedBase -= 3600 * 24 * 1000));
+  category.push(
+    [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-')
+  );
+}
+    // 指定图表的配置项和数据
+    var option = {
+  backgroundColor: '#0f375f',
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['睡眠时长(h)'],
+    textStyle: {
+      color: '#ccc'
+    }
+  },
+  xAxis: {
+    data: category,
+    axisLine: {
+      lineStyle: {
+        color: '#ccc'
+      }
+    }
+  },
+  yAxis: {
+    splitLine: { show: false },
+    axisLine: {
+      lineStyle: {
+        color: '#ccc'
+      }
+    }
+  },
+  series: [
+    {
+      name: '睡眠时长(h)',
+      type: 'bar',
+      barWidth: 10,
+      itemStyle: {
+        borderRadius: 5,
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: '#14c8d4' },
+          { offset: 1, color: '#43eec6' }
+        ])
+      },
+      data: barData
+    }
+  ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        //根据窗口的大小变动图表 --- 重点
+        window.onresize = function(){
+            myChart.resize();
+            }
+</script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--此处展示睡眠时长折线图-->
+
+                <div class="page-header">
+                    <h2>综合</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">消耗热量</h3>
+                            </div>
+                            <form action="/life/healthy/" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" id="optionsRadiosInline1" value="男">男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" id="optionsRadiosInline2" value="女">女
+                                    </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>年龄*</label>
+                                        <input class="form-control" name="age">
+                                        <p class="help-block"> </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                            <label>身高（cm）</label>
+                                            <input class="form-control" name="height">
+                                            <p class="help-block"> </p>
+                                        </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>体重（kg）</label>
+                                            <input class="form-control" name="weight">
+                                            <p class="help-block"> </p>
+                                         </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>活动类型</label>
+                                        <select class="form-control" name="type">
+                                            <option></option>
+                                            <option>久坐</option>
+                                            <option>稍微运动(每周1-3次运动)</option>
+                                            <option>中度运动(每周3-5次运动)</option>
+                                            <option>积极运动(每周6-7次运动)</option>
+                                            <option>专业活动(2倍运动量)</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-default">计算</button>
+                                    <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.col-sm-4 -->
+                    <div class="col-sm-4">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">基础代谢率(BMR)</h3>
+                            </div>
+                            <form action="/life/healthy/" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" id="optionsRadiosInline3" value="男">男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" id="optionsRadiosInline4" value="女">女
+                                    </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>年龄*</label>
+                                        <input class="form-control" name="age1">
+                                        <p class="help-block"> </p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>身高（cm）</label>
+                                        <input class="form-control" name="height">
+                                        <p class="help-block"> </p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>体重（kg）</label>
+                                        <input class="form-control" name="weight">
+                                        <p class="help-block"> </p>
+                                    </div>
+                                    <button type="submit" class="btn btn-default">计算</button>
+                                    <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.col-sm-4 -->
+                    <div class="col-sm-4">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">身体质量指数(BMI)</h3>
+                            </div>
+                            <form action="/life/healthy/" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" id="optionsRadiosInline5" value="男">男
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" id="optionsRadiosInline6" value="女">女
+                                </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>年龄*</label>
+                                    <input class="form-control" name="age2">
+                                    <p class="help-block"> </p>
+                                </div>
+                                <div class="form-group">
+                                    <label>身高（cm）</label>
+                                    <input class="form-control" name="height">
+                                    <p class="help-block"> </p>
+                                </div>
+                                <div class="form-group">
+                                    <label>体重（kg）</label>
+                                    <input class="form-control" name="weight">
+                                    <p class="help-block"> </p>
+                                </div>
+                                <button type="submit" class="btn btn-default">计算</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.col-sm-4 -->
+                </div>
+
+                <div class="dropdown theme-dropdown clearfix">
+                    <a id="dropdownMenu1" href="#" role="button" class="sr-only dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li class="active" role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="alert alert-success">
+                            <strong>热量计算结果： {{ h }}</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="alert alert-info">
+                            <strong>BMR计算结果： {{ r }}</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="alert alert-warning">
+                            <strong>BMI计算结果： {{ m }}</strong>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript">
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+</body>
+
+</html>
+

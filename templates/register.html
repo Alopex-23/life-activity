@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>幸福人生</title>
+
+    <link rel="icon" href="https://tse2-mm.cn.bing.net/th/id/OIP-C.HhLTCpoiMiiBbkGed_MddQHaG9?w=222&h=209&c=7&r=0&o=5&dpr=1.3&pid=1.7" sizes="16*16">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="{% static 'css/plugins/morris.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .ddm-p{
+            margin: 12px;
+        }
+        .page-header{
+            text-align: center;
+        }
+        .col-lg-13{
+            background-color: #edf1f4;
+            padding: 40px 12px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            max-width: 75%;
+            padding: 50px 0 80px 0;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .container p{
+            float: right;
+            margin: 0 auto 20px;
+        }
+        .input-group {
+            width: 35em;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #f2f2f2;
+            box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 50px auto 20px;
+            font-weight: 600;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        .btn:hover {
+            transition: all 0.4s ease;
+            background-color: #3e8e41;
+        }
+
+        @media only screen and (max-width: 950px) {
+        .container {
+            max-width: 100%;
+            padding: 10px;
+        }
+        .input-group{
+            width: 30em;
+        }
+        }
+
+        @media only screen and (max-width: 500px) {
+        .btn {
+            font-size: 16px;
+        }
+        .input-group{
+            width: 18em;
+        }
+        }
+        .btn-primary{
+            position: absolute;
+            height: 44%;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            color: rgb(23, 22, 22);
+            background-color: #ddecf6;
+            border: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/life/register/">幸福人生</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 登录/注册 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <p class="ddm-p">想体验幸福敏捷的数字人生吗？请<a href="/life/login/">登录</a></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="/life/login/"><strong> 登录界面</strong></a>
+                    </li>
+                    <li class="active">
+                        <a href="/life/register/"><strong> 注册界面</strong></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">注册界面 </h1>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i> “ 幸福人生 ”是以人机协作、以人为本的活动轨迹可视化，旨在帮助用户提高生活效率和幸福感。 <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p id="modal-message"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-13">
+                        <div class="container">
+                            <form action="/life/register/" method="post" id="email_form">
+                            <div class="input-group">
+                                <label for="email"><h4>邮箱:</h4></label>
+                                <input type="text" id="email"  placeholder="Email" name="email" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="username"><h4>用户名:</h4></label>
+                                <input type="text" id="username"  placeholder="Username" name="username" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="password1"><h4>请输入密码:</h4></label>
+                                <input type="password" id="password1"  placeholder="Password" name="password1" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="password2"><h4>请再次输入密码:</h4></label>
+                                <input type="password" id="password2" placeholder="Password" name="password2" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="verify"><h4>验证码:</h4></label>
+                                <div class="vcodegroup">
+                                    <input type="text" id="verify" placeholder="Verification Code" class="form-control" style="width: 75%;display: inline-block" name="verify">
+                                    <button type="button" class="btn-primary" id="get-code-btn" onclick="getCode(this)" name="sendEmail" style="width: 24%">获取验证码</button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn">点 击 注 册</button>
+                            <p>已有账号？<a href="/life/login/">马上登录</a></p>
+                            </form>
+                            <div style="color:red"> {{ errmg }} </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="{% static 'js/plugins/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/plugins/morris/morris.min.js' %}"></script>
+    <script src="{% static 'js/plugins/morris/morris-data.js' %}"></script>
+<script>
+    var countdown = 60;
+
+    function getCode(btn) {
+        var email = $('#email').val();
+        if (!validateEmail(email)) {
+            showModal('请输入正确的邮箱地址');
+            return;
+        }
+        sendCode(email, btn);
+    }
+
+    function validateEmail(email) {
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    function sendCode(email, btn) {
+        $.ajax({
+            url: '/life/ajax_reg/',
+            type: 'POST',
+            data: {
+                email: email
+            },
+            success: function (data) {
+                if (data['code'] === 200) {
+                    showModal(data['msg']);
+                    setCountdown(btn);
+                } else {
+                    showModal(data['msg']);
+                }
+            }
+        });
+    }
+
+    function setCountdown(btn) {
+        if (countdown === 0) {
+            btn.removeAttribute('disabled');
+            btn.innerHTML = '获取';
+            countdown = 60;
+            return;
+        } else {
+            btn.setAttribute('disabled', true);
+            btn.innerHTML = '重新获取(' + countdown + ')';
+            countdown--;
+        }
+        setTimeout(function () {
+            setCountdown(btn)
+        }, 1000);
+    }
+
+    function showModal(message) {
+        $('#modal-message').text(message);
+        $('#myModal').modal('show');
+    }
+
+    $(window).resize(function () {
+        var modal = $('.modal-dialog');
+        modal.css('margin-top', Math.max(0, ($(window).height() - modal.height()) / 2));
+    });
+</script>
+    <script type="text/javascript">
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+</body>
+
+</html>

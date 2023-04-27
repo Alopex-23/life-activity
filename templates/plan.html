@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>幸福人生</title>
+
+    <link rel="icon" href="https://tse2-mm.cn.bing.net/th/id/OIP-C.HhLTCpoiMiiBbkGed_MddQHaG9?w=222&h=209&c=7&r=0&o=5&dpr=1.3&pid=1.7" sizes="16*16">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="{% static 'css/plugins/morris.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+<!--    &lt;!&ndash; HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries &ndash;&gt;-->
+<!--    &lt;!&ndash; WARNING: Respond.js doesn't work if you view the page via file:// &ndash;&gt;-->
+<!--    &lt;!&ndash;[if lt IE 9]>-->
+<!--        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+<!--        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+<!--    <![endif]&ndash;&gt;-->
+    <!--动态日历-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+        .calendar{
+            margin: 20px;
+            width: auto;
+            height: 355px;
+            border-radius: 5px;
+            background: #fefffc;
+            box-shadow: 0px 1px 1px rgba(0,0,0,.1);
+        }
+        /*标题的显示样式*/
+        .title{
+            height: 70px;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            position: relative;
+            text-align: center;
+        }
+        /*标题中的月份显示样式*/
+        #calendar-title{
+            font-weight: 550;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px 0 0 0;
+        }
+        /*标题中的年份显示样式*/
+        #calendar-year{
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
+        }
+        /*上个月的超链接显示样式*/
+        #pre{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            /*background: url(image/pre.png) no-repeat 50% 50%;*/
+            /*没规定大小时，图片显示 0X0*/
+            width: 60px;
+            height: 70px;
+        }
+        /*下个月的超链接显示样式*/
+        #next{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            /*background: url(image/next.png) no-repeat 50% 50%;*/
+            width: 60px;
+            height: 70px;
+        }
+
+        .body-list ul{
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            width: 100%;
+            box-sizing: border-box;
+
+        }
+
+        .body-list ul li{
+            list-style: none;
+            display: block;
+            width: 14.28%;
+            float: left;
+            /*规定行高，垂直居中*/
+            height: 36px;
+            line-height: 36px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        /*类选择器：设置所有class属性为green的标签的样式*/
+        .green{color:#6ac13c;}
+        /*设置已经过去的日期颜色*/
+        .lightgrey{color:#a8a8a8;}
+        /*设置将来的日期颜色*/
+        .darkgrey{color:#565656;}
+        /*日期当天用绿色背景绿色文字加以显示*/
+        .greenbox{border: 1px solid #6ac13c; background: #e9f8df;}
+        .title a{
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #565656;
+            padding-top: 10px;
+        }
+        .jumbotron{text-shadow: #4d6073 0 0 2px;
+            color: white; padding: 20px;
+            background: linear-gradient(40deg,#5589c5,#a1cef8);
+            box-shadow: 4px 4px 4px 4px rgba(203, 216, 227, 0.2);transition: all 1s;
+        }
+        .dayplanin .dayplanincol{background-color: #efc27a;}
+        .dayplanin{margin: 20px; background-color: #fffdfa;}
+        .dayact{margin: 10px;}
+        .calendar:hover,.dayplanin:hover,.dayact:hover{
+            box-shadow: 0px 0px 4px 4px rgba(105, 104, 104, 0.2);
+        }
+        .form-but{margin: 19px 0 5px; justify-content: center; display: flex;}
+        .form-but button{background-color: #efc27a;
+            border: 0;border-radius: 5px;
+            padding: 1% 10%; margin: 0 10%;
+        }
+        .jumbotron:hover{color: rgb(41, 41, 41);}
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/life/user_index/">幸福人生</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>广应科大表哥</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天23：02</p>
+                                        <p>投稿请联系我</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong> 玲娜贝儿</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>昨天19：56</p>
+                                        <p>谢谢可爱的你来迪士尼找我玩儿~</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>法外狂徒——张三</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天1:07</p>
+                                        <p>今年的法考好难呐！！！</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">阅读更多新消息</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/life/charts/">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="/life/plan/">
+                                <div>
+                                    <p>
+                                        <strong>日程计划</strong>
+                                        <span class="pull-right text-muted">40% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/comm/">
+                                <div>
+                                    <p>
+                                        <strong>人际交往</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/manage/">
+                                <div>
+                                    <p>
+                                        <strong>金钱管理</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/healthy/">
+                                <div>
+                                    <p>
+                                        <strong>健康生活</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/clothes/">
+                                <div>
+                                    <p>
+                                        <strong>穿衣推荐</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/eat/">
+                                <div>
+                                    <p>
+                                        <strong>饮食推荐</strong>
+                                        <span class="pull-right text-muted">60% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/talk/">
+                                <div>
+                                    <p>
+                                        <strong>自我对话</strong>
+                                        <span class="pull-right text-muted">80% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>用户 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/life/user_index/profile1/"><i class="fa fa-fw fa-user"></i> 资料</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> 收件箱</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> 设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/login_out/"><i class="fa fa-fw fa-power-off"></i> 登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="/life/user_index/"><i class="fa fa-fw fa-dashboard"></i> 主页</a>
+                    </li>
+                    <li class="active">
+                        <a href="/life/plan/"><i class="fa fa-fw fa-bar-chart-o"></i>日程计划</a>
+                    </li>
+                    <li>
+                        <a href="/life/comm/"><i class="fa fa-fw fa-table"></i> 人际交往</a>
+                    </li>
+                    <li>
+                        <a href="/life/manage/"><i class="fa fa-fw fa-edit"></i> 金钱管理</a>
+                    </li>
+                    <li>
+                        <a href="/life/healthy/"><i class="fa fa-fw fa-desktop"></i> 健康生活</a>
+                    </li>
+                    <li>
+                        <a href="/life/clothes/"><i class="fa fa-fw fa-wrench"></i> 穿衣推荐</a>
+                    </li>
+                    <li>
+                        <a href="/life/eat/"><i class="fa fa-fw fa-arrows-v"></i> 饮食推荐</a>
+                    </li>
+                    <li>
+                        <a href="/life/talk/"><i class="fa fa-fw fa-file"></i> 自我对话</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            日程计划<small>Schedule</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="/life/user_index/">主页</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-bar-chart-o"></i> 日程计划
+                                	<!--setInterval实时显示时间-->
+                                <span id="time"></span>
+                                    <script>
+                                    function mytime(){
+                                        var a = new Date();
+                                        var b = a.toLocaleTimeString();
+                                        var c = a.toLocaleDateString();
+                                         document.getElementById("time").innerHTML = c+"&nbsp"+b;
+                                         }
+                                            setInterval(function() {mytime()},1000);
+                                    </script>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                 <!-- /.row -->
+                <!-- 营销灰屏 -->
+                <div class="jumbotron">
+                    <h3>看看你的日程计划，不遗漏每件小事！</h3>
+                    <p>计划的制定比计划本身更为重要 —— 戴尔·麦康基</p>
+                </div>
+                </div>
+                <!-- 日历 -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="calendar">
+                            <div class="title">
+                                <h1 class="green" id="calendar-title">Month</h1>
+                                <h2 class="green" id="calendar-year">Year</h2>
+                                <a href="" id="pre"> < </a>
+                                <a href="" id="next"> > </a>
+                            </div>
+                            <div class="body">
+                                <div class="lightgrey body-list">
+                                    <!--使用无序列表标签显示星期-->
+                                    <ul>
+                                        <li>日</li>
+                                        <li>一</li>
+                                        <li>二</li>
+                                        <li>三</li>
+                                        <li>四</li>
+                                        <li>五</li>
+                                        <li>六</li>
+                                    </ul>
+                                </div>
+                                <!--使用无序列表标签显示日期，日期使用JavaScript动态获取，然后使用innerHTML设置<ul>标签之间的HTML-->
+                                <div class="darkgrey body-list">
+                                    <ul id="days">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            var month_olypic = [31,29,31,30,31,30,31,31,30,31,30,31];//正常年份12个月对应的天数
+                            var month_normal = [31,28,31,30,31,30,31,31,30,31,30,31];//闰年中12个月对应的天数
+                            var month_name =["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];//定义要显示的月份数组
+                            //获取以上各个部分的id
+                            var holder = document.getElementById("days");
+                            var prev = document.getElementById("prev");//上个月份的超链接id
+                            var next = document.getElementById("next");//下个月份的超链接id
+                            var ctitle = document.getElementById("calendar-title");
+                            var cyear = document.getElementById("calendar-year");
+                            //获取当天的年月日
+                            var my_date = new Date();
+                            var my_year = my_date.getFullYear();//获取年份
+                            var my_month = my_date.getMonth(); //获取月份，下标从0开始
+                            var my_day = my_date.getDate();//获取当前日期
+
+                            //根据年月获取当月第一天是周几
+                            function dayStart(month,year){
+                                var tmpDate = new Date(year, month, 1);
+                                return (tmpDate.getDay());
+                            }
+                            //根据年份判断某月有多少天，主要是区分闰年
+                            function daysMonth(month, year){
+                                var tmp1 = year % 4;
+                                var tmp2 = year % 100;
+                                var tmp3 = year % 400;
+
+                                if((tmp1 == 0 && tmp2 != 0) || (tmp3 == 0)){
+                                    return (month_olypic[month]);//闰年
+                                }else{
+                                    return (month_normal[month]);//非闰年
+                                }
+                            }
+
+                            function refreshDate(){
+                                var str = "";
+                                //计算当月的天数和每月第一天都是周几
+                                var totalDay = daysMonth(my_month,my_year);
+                                var firstDay = dayStart(my_month, my_year);
+                                //添加每个月前面的空白部分，即若某个月的第一天是从周三开始，则前面的周一，周二需要空出来
+                                for(var i = 0; i < firstDay; i++){
+                                    str += "<li>"+"</li>";
+                                }
+
+                                //从一号开始添加到totalDay（每个月的总天数），并为pre，next和当天添加样式
+                                var myclass;
+                                for(var i = 1; i <= totalDay; i++){
+                                    //如果是已经过去的日期，则用浅灰色显示
+                                    if((my_year < my_date.getFullYear())||(my_year == my_date.getFullYear() &&
+                                        my_month < my_date.getMonth()) || (my_year == my_date.getFullYear() &&
+                                        my_month == my_date.getMonth() && i < my_day)){
+                                        myclass = " class='lightgrey'";
+                                    }
+                                    //如果正好是今天，则用绿色显示
+                                    else if(my_year == my_date.getFullYear() && my_month == my_date.getMonth() && i == my_day){
+                                        myclass = "class = 'green greenbox'";
+                                    }
+                                    //将来的日期用深灰色显示
+                                    else{
+                                        myclass = "class = 'darkgrey'";
+                                    }
+                                    str += "<li "+myclass+">"+i+"</li>";
+                                }
+                                holder.innerHTML = str;//为日期的列表标签设置HTML；
+                                ctitle.innerHTML = month_name[my_month];//设置当前显示的月份
+                                cyear.innerHTML = my_year;//设置当前显示的年份
+                            }
+                            refreshDate();//显示日期，更新界面
+                            //上个月的点击事件
+                            pre.onclick = function(e){
+                                e.preventDefault();
+                                my_month--;
+                                if(my_month < 0){
+                                    my_year--;
+                                    my_month = 11;
+                                }
+                                refreshDate();//更新界面
+                            }
+                            //下个月的点击事件
+                            next.onclick = function(e){
+                                e.preventDefault();
+                                my_month++;
+                                if(my_month > 11){
+                                    my_month = 0;
+                                    my_year++;
+                                }
+                                refreshDate();//更新界面
+                            }
+                        </script>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-default dayplanin">
+                            <div class="panel-heading dayplanincol">
+                                日活动预测
+                            </div>
+                            <div class="panel-body">
+                                <div class="tab-cotent">
+                                    <p>您这一天可能会做的事情：</p>
+                                        {% if result == None %}
+                                            <textarea class="form-control" rows="12" id="myInput2">未预测出活动，我们将继续努力,希望您也不要放弃，坚持记录！ 💗 💗 💗</textarea>
+                                        {% else %}
+                                            <textarea class="form-control" rows="12" id="myInput1">{% for i in result %}{{ forloop.counter }}. {{ i }}{% endfor %}
+                                            </textarea>
+                                        {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin: 0 15px 15px;">日活动</h3>
+                </div>
+                <div class="row" style=" justify-content: center;">
+                    <div class="col-lg-12">
+                        <form action="/life/plan/" method="post">
+                        <div class="panel panel-red  dayact">
+                            <div class="panel-heading">记录</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>日期</label>
+                                            <input class="form-control" placeholder="格式如：2023-04-05" name="date">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>星期</label>
+                                            <select class="form-control" name="weekd">
+                                                <option value="1">一</option>
+                                                <option value="2">二</option>
+                                                <option value="3">三</option>
+                                                <option value="4">四</option>
+                                                <option value="5">五</option>
+                                                <option value="6">六</option>
+                                                <option value="7">日</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>事件</label>
+                                            <input class="form-control" placeholder="请输入……" name="event">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>时长/h</label>
+                                            <input class="form-control" placeholder="请输入……" name="duration">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>活动类型</label>
+                                            <select class="form-control" name="task_type">
+                                                <option value="学习">学习</option>
+                                                <option value="工作">工作</option>
+                                                <option value="娱乐">娱乐</option>
+                                                <option value="运动">运动</option>
+                                                <option value="休闲">休闲</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="submit" class="btn btn-default">确定</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-4 -->
+                        </form>
+                    </div>
+                    <div >
+
+                    </div>
+                </div>
+                            <!-- <div class="panel-heading dayplanincol">
+                                日计划输入
+                            </div>
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <p>各个计划用 [ ] 隔开</p>
+                                    <textarea class="form-control" rows="9" id="myInput" placeholder="输入格式：[背20个单词][在操场跑2圈]..."></textarea>
+                                    <div class="form-but"><button>提交</button>
+                                    <button id="clearBtn">清空</button></div>
+
+                                </div>
+                            </div> -->
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="{% static 'js/plugins/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/plugins/morris/morris.min.js' %}"></script>
+    <script src="{% static 'js/plugins/morris/morris-data.js' %}"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <script src="{% static 'js/plugins/flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'js/plugins/flot/jquery.flot.tooltip.min.js' %}"></script>
+    <script src="{% static 'js/plugins/flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'js/plugins/flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'js/plugins/flot/flot-data.js' %}"></script>
+
+    <script type="text/javascript">
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+    </script>
+
+</body>
+
+</html>

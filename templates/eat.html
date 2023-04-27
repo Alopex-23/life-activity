@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>幸福人生</title>
+
+    <link rel="icon" href="https://tse2-mm.cn.bing.net/th/id/OIP-C.HhLTCpoiMiiBbkGed_MddQHaG9?w=222&h=209&c=7&r=0&o=5&dpr=1.3&pid=1.7" sizes="16*16">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!--echarts图表-->
+    <script src="{% static 'js/echarts.js' %}"></script>
+    <style>
+        .jumbotron{text-shadow: #73584d 0 0 2px;
+            color: white; padding: 20px;transition: all 1s;
+            background: linear-gradient(40deg,#c95c54,#df8e88);
+            box-shadow: 4px 4px 4px 4px rgba(203, 216, 227, 0.2);}
+        .jumbotron:hover{color: rgb(41, 41, 41);}
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/life/user_index/">幸福人生</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>广应科大表哥</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天23：02</p>
+                                        <p>投稿请联系我</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong> 玲娜贝儿</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>昨天19：56</p>
+                                        <p>谢谢可爱的你来迪士尼找我玩儿~</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>法外狂徒——张三</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天1:07</p>
+                                        <p>今年的法考好难呐！！！</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">阅读更多新消息</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="/life/plan/">
+                                <div>
+                                    <p>
+                                        <strong>日程计划</strong>
+                                        <span class="pull-right text-muted">40% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/comm/">
+                                <div>
+                                    <p>
+                                        <strong>人际交往</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/manage/">
+                                <div>
+                                    <p>
+                                        <strong>金钱管理</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/healthy/">
+                                <div>
+                                    <p>
+                                        <strong>健康生活</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/clothes/">
+                                <div>
+                                    <p>
+                                        <strong>穿衣推荐</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/eat/">
+                                <div>
+                                    <p>
+                                        <strong>饮食推荐</strong>
+                                        <span class="pull-right text-muted">60% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/talk/">
+                                <div>
+                                    <p>
+                                        <strong>自我对话</strong>
+                                        <span class="pull-right text-muted">80% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 用户 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/life/user_index/profile1/"><i class="fa fa-fw fa-user"></i> 资料</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> 收件箱</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> 设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/login_out/"><i class="fa fa-fw fa-power-off"></i> 登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="/life/user_index/"><i class="fa fa-fw fa-dashboard"></i> 主页</a>
+                    </li>
+                    <li>
+                        <a href="/life/plan/"><i class="fa fa-fw fa-bar-chart-o"></i>日程计划</a>
+                    </li>
+                    <li>
+                        <a href="/life/comm/"><i class="fa fa-fw fa-table"></i> 人际交往</a>
+                    </li>
+                    <li>
+                        <a href="/life/manage"><i class="fa fa-fw fa-edit"></i> 金钱管理</a>
+                    </li>
+                    <li>
+                        <a href="/life/healthy/"><i class="fa fa-fw fa-desktop"></i> 健康生活</a>
+                    </li>
+                    <li>
+                        <a href="/life/clothes/"><i class="fa fa-fw fa-wrench"></i> 穿衣推荐</a>
+                    </li>
+                    <li class="active">
+                        <a href="/life/eat/"><i class="fa fa-fw fa-file"></i> 饮食推荐</a>
+                    </li>
+                    <li>
+                        <a href="/life/talk/"><i class="fa fa-fw fa-file"></i> 自我对话</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- 饮食推荐 -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            饮食推荐 <small>Dietary recommendations</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="/life/user_index/">主页</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-file"></i> 饮食推荐
+                                	<!--setInterval实时显示时间-->
+                                        <span id="time"></span>
+                                    <script>
+                                        function mytime(){
+                                            var a = new Date();
+                                            var b = a.toLocaleTimeString();
+                                            var c = a.toLocaleDateString();
+                                         document.getElementById("time").innerHTML = c+"&nbsp"+b;
+                                         }
+                                        setInterval(function() {mytime()},1000);
+                                    </script>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- 营销灰屏 -->
+                <div class="jumbotron">
+                    <h3>每一顿饭都是重要的！</h3>
+                    <p>让自己的饮食更加合理</p>
+                </div>
+
+
+            <!--日常饮食-->
+            <div class="row">
+            <div class="col-lg-12">
+                <form role="form" action="/life/eat/" method="post">
+                    <div class="page-header">
+                        <h2>日常饮食</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="alert alert-warning">
+                            <strong>每天都要按时吃饭哦~</strong>
+                    </div>
+                    <div class="form-group has-success">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="inputSuccess1">早餐</label>
+                                <input type="text" class="form-control" id="inputSuccess1" name="breakfast">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label" for="inputSuccess1">评分</label>
+                                <select class="form-control" name="op1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-success">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="inputSuccess2">上午茶</label>
+                                <input type="text" class="form-control" id="inputSuccess2" name="am">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label" for="inputSuccess1">评分</label>
+                                <select class="form-control" name="op2">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-warning">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="inputWarning1">午餐</label>
+                                <input type="text" class="form-control" id="inputWarning1" name="lunch">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label" for="inputSuccess1">评分</label>
+                                <select class="form-control" name="op3">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-warning">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="inputWarning2">下午茶</label>
+                                <input type="text" class="form-control" id="inputWarning2" name="pm">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label" for="inputSuccess1">评分</label>
+                                <select class="form-control" name="op4">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="inputError1">晚餐</label>
+                                <input type="text" class="form-control" id="inputError1" name="dinner">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label" for="inputSuccess1">评分</label>
+                                <select class="form-control" name="op5">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="inputError1">宵夜</label>
+                                <input type="text" class="form-control" id="inputError2" name="supper">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label" for="inputSuccess1">评分</label>
+                                <select class="form-control" name="op6">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">完成</button>
+                    <button type="reset" class="btn btn-default">重置</button>
+                </form>
+                <div id="main" style="width: 100%;height:400%;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+          title: {
+    text: '日常饮食占比',
+    left: 'center'
+  },
+  legend: {
+    top: 'bottom'
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      mark: { show: true },
+      dataView: { show: true, readOnly: false },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+  series: [
+    {
+      name: '饮食',
+      type: 'pie',
+      radius: [20, 70],
+      center: ['50%', '50%'],
+      roseType: 'area',
+      itemStyle: {
+        borderRadius: 8
+      },
+      data: [
+        { value: {{ value.breakfast }}, name: '早餐' },
+        { value: {{ value.lunch }}, name: '午餐' },
+        { value: {{ value.dinner }}, name: '晚餐' },
+        { value: {{ value.am }}, name: '上午茶' },
+        { value: {{ value.pm }}, name: '下午茶' },
+        { value: {{ value.supper }}, name: '宵夜' },
+      ]
+    }
+  ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        //根据窗口的大小变动图表 --- 重点
+        window.onresize = function(){
+            myChart.resize();
+            }
+</script>
+                </div>
+                 <div class="col-lg-6">
+                   <form role="form" action="/life/eat/" method="post">
+                    <div class="alert alert-success">
+                        每天要喝<strong>8</strong>杯水哦~
+                    </div>
+                    <div class="form-group">
+                        <label>饮水记录</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="600~800ml" checked>600~800ml
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="800~1000ml">800~1000ml
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="1000~1200ml">1000~1200ml
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios4" value="1200~1400ml">1200~1400ml
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios5" value="1400~1600ml">1400~1600ml
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios6" value="1600~1800ml">1600~1800ml
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios7" value="1800~2000ml">1800~2000ml
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                            <label>今日份饮品</label>
+                            <select class="form-control" name="type">
+                                <option>无</option>
+                                <option>奶茶</option>
+                                <option>咖啡</option>
+                                <option>碳酸饮料</option>
+                                <option>糖水</option>
+                            </select>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label>杯数</label>
+                                <select multiple class="form-control" name="num">
+                                    <option>1杯</option>
+                                    <option>2杯</option>
+                                    <option>3杯</option>
+                                    <option>4杯</option>
+                                    <option>5杯</option>
+                                </select>
+                            </div>
+
+                        <div class="form-group">
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="小杯" name="size">小杯
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="中杯" name="size">中杯
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="大杯" name="size">大杯
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default">完成</button>
+                        <button type="reset" class="btn btn-default">重置</button>
+                        <h1></h1>
+                        <u></u>
+                    </div>
+                   </form>
+                   <div id="main1" style="width: 100%;height:450%;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+   var dateList = [];
+
+    for (var i = 6; i >= 1; i--) {
+      // 将当前日期减 i 天
+      var targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() - i);
+
+      var year = targetDate.getFullYear();
+      var month = targetDate.getMonth() + 1;
+      var day = targetDate.getDate();
+      dateList.push(year + '-' + month + '-' + day);
+    }
+    var today = new Date();
+    dateList.push(today.getFullYear() + '-' +
+                  (today.getMonth() + 1) + '-' +
+                  today.getDate());
+    var myChart = echarts.init(document.getElementById('main1'));
+    // prettier-ignore
+// prettier-ignore
+let data = [{{ result.one }}, {{ result.two }}, {{ result.three }}, {{ result.four }}, {{ result.five }}, {{ result.six }}, {{ result.seven }}];
+let yMax = 500;
+let dataShadow = [];
+for (let i = 0; i < data.length; i++) {
+  dataShadow.push(yMax);
+}
+
+    // 指定图表的配置项和数据
+    var option = {
+  title: {
+    text: '饮水量',
+    left: 'center',
+    subtext: ''
+  },
+  xAxis: {
+    data: dateList,
+  },
+  yAxis: {
+    axisLine: {
+      show: false
+    },
+    axisTick: {
+      show: false
+    },
+    axisLabel: {
+      color: '#999'
+    }
+  },
+  dataZoom: [
+    {
+      type: 'inside'
+    }
+  ],
+  series: [
+    {
+      type: 'bar',
+      showBackground: true,
+      itemStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: '#83bff6' },
+          { offset: 0.5, color: '#188df0' },
+          { offset: 1, color: '#188df0' }
+        ])
+      },
+      emphasis: {
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: '#2378f7' },
+            { offset: 0.7, color: '#2378f7' },
+            { offset: 1, color: '#83bff6' }
+          ])
+        }
+      },
+      data: data
+    }
+  ]
+};
+// Enable data zoom when user click bar.
+const zoomSize = 6;
+myChart.on('click', function (params) {
+  console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+  myChart.dispatchAction({
+    type: 'dataZoom',
+    startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+    endValue:
+      dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+  });
+});
+// 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        //根据窗口的大小变动图表 --- 重点
+        window.onresize = function(){
+            myChart.resize();
+            }
+</script>
+                 </div>
+
+                </div>
+                        <div class="col-lg-12">
+                        <h2 class="page-header">今日份饮食推荐菜单</h2>
+                        </div>
+                <div style="justify-content: center;">
+                    {% if recommedDic %}
+                        {% for i in recommedDic %}
+                            <img src="{{ i.img }}" height="250px" width="250px" name="img" id="img">
+                            <label style="font-size:20px;" for="img">{{ i.food }}&nbsp;&nbsp;</label>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery Version 1.11.0 -->
+        <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+        <script type="text/javascript">
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+        </script>
+
+</body>
+
+</html>

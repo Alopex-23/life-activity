@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>幸福人生</title>
+
+    <link rel="icon" href="https://tse2-mm.cn.bing.net/th/id/OIP-C.HhLTCpoiMiiBbkGed_MddQHaG9?w=222&h=209&c=7&r=0&o=5&dpr=1.3&pid=1.7" sizes="16*16">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="{% static 'css/plugins/morris.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!--echarts图表-->
+    <script src="{% static 'js/echarts.js' %}"></script>
+
+
+<!--    &lt;!&ndash; HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries &ndash;&gt;-->
+<!--    &lt;!&ndash; WARNING: Respond.js doesn't work if you view the page via file:// &ndash;&gt;-->
+<!--    &lt;!&ndash;[if lt IE 9]>-->
+<!--        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+<!--        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+<!--    <![endif]&ndash;&gt;-->
+    <style>.ddm-p{margin: 12px;}</style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/life/user_index/">幸福人生</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="/life/login/" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 登录/注册 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <p class="ddm-p">想体验幸福敏捷的数字人生吗？请<a href="/life/login/">登录</a></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="/life/index/"><i class="fa fa-fw fa-dashboard"></i> 主页</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="opener()"><i class="fa fa-fw fa-bar-chart-o"></i>日程计划</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="opener()"><i class="fa fa-fw fa-table"></i> 人际交往</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="opener()"><i class="fa fa-fw fa-edit"></i> 金钱管理</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="opener()"><i class="fa fa-fw fa-desktop"></i> 健康生活</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="opener()"><i class="fa fa-fw fa-wrench"></i> 穿衣推荐</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="opener()"><i class="fa fa-fw fa-arrows-v"></i> 饮食推荐</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="opener()"><i class="fa fa-fw fa-file"></i> 自我对话</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            主页 <small> Home page</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> 主页
+                                	<!--setInterval实时显示时间-->
+                                <span id="time"></span>
+                                    <script>
+                                        function mytime(){
+                                            var a = new Date();
+                                            var b = a.toLocaleTimeString();
+                                            var c = a.toLocaleDateString();
+                                         document.getElementById("time").innerHTML = c+"&nbsp"+b;
+                                         }
+                                        setInterval(function() {mytime()},1000);
+                                    </script>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i>  <strong>遵循人机协作、以人为本的原则。（用户需坚持分析自我需求，核实、编辑、更新数据）</strong>  <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">--</div>
+                                        <div>人际交往</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left"><a href="#" onclick="opener()" target="_self">查看详情</a></span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">--</div>
+                                        <div>日程计划</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left"><a href="#" onclick="opener()" target="_self">查看详情</a></span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">--</div>
+                                        <div>金钱管理</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left"><a href="#" onclick="opener()" target="_self">查看详情</a></span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-support fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">--</div>
+                                        <div>健康生活</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left"><a href="#" onclick="opener()" target="_self">查看详情</a></span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-bar-chart-o fa-fw"></i> 每日记录数量
+                                 <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+                                <div id="main" style="width: 100%;height:400%;"></div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+
+                    </div>
+                    <!-- /.col-lg-8 -->
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="fa fa-bell fa-fw"></i> 轨迹
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-comment fa-fw"></i> 人际交往
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-twitter fa-fw"></i> 注销
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-envelope fa-fw"></i> 收件箱
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-tasks fa-fw"></i> 日程计划
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-upload fa-fw"></i> 健康生活
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-bolt fa-fw"></i> 查看天气状况
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-warning fa-fw"></i> 查看饮食推荐
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-shopping-cart fa-fw"></i> 支出
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-money fa-fw"></i> 收入
+                                        <span class="pull-right text-muted small"><em>--</em>
+                                        </span>
+                                    </a>
+                                </div>
+                                <!-- /.list-group -->
+<!--                                <a href="#" class="btn btn-default btn-block">查看更多轨迹</a>-->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="{% static 'js/plugins/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/plugins/morris/morris.min.js' %}"></script>
+    <script src="{% static 'js/plugins/morris/morris-data.js' %}"></script>
+    <script>
+        function opener(){
+            alert("请先登录解锁更多功能")
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>幸福人生</title>
+
+    <link rel="icon" href="https://tse2-mm.cn.bing.net/th/id/OIP-C.HhLTCpoiMiiBbkGed_MddQHaG9?w=222&h=209&c=7&r=0&o=5&dpr=1.3&pid=1.7" sizes="16*16">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+<!--    &lt;!&ndash; HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries &ndash;&gt;-->
+<!--    &lt;!&ndash; WARNING: Respond.js doesn't work if you view the page via file:// &ndash;&gt;-->
+<!--    &lt;!&ndash;[if lt IE 9]>-->
+<!--        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+<!--        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+<!--    <![endif]&ndash;&gt;-->
+    <style>
+        .jumbotron{text-shadow: #73674d 0 0 2px;
+        color: white; padding: 20px;transition: all 1s;
+        background: linear-gradient(40deg,#d8ab66,#e8cba0);
+        box-shadow: 4px 4px 4px 4px rgba(203, 216, 227, 0.2);}
+        .jumbotron:hover{color: rgb(41, 41, 41);}
+        .formweather{border: 1px solid #bab9b7; border-radius: 5px;padding: 15px;background-color: #f9f8f5;}
+        .formweather input{margin: 20px 0 20px;width: 99%;}
+        .formclothe{background-color: #ecf5fa;}
+        .formclothe input{margin: 5px 0 5px;}
+        .formclothe select{margin: 10px 0;}
+        .clothesact{margin: 10px;}
+        .clotheshow{height: 200px;}
+        #myChart{height: 200px;width: 100%;}
+        .clochart{margin: 4% 4%;}
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/life/user_index/">幸福人生</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>广应科大表哥</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天23：02</p>
+                                        <p>投稿请联系我</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong> 玲娜贝儿</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>昨天19：56</p>
+                                        <p>谢谢可爱的你来迪士尼找我玩儿~</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object"  alt="" src="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>法外狂徒——张三</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> 昨天1:07</p>
+                                        <p>今年的法考好难呐！！！</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">阅读更多新消息</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/life/plan/">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="/life/plan/">
+                                <div>
+                                    <p>
+                                        <strong>日程计划</strong>
+                                        <span class="pull-right text-muted">40% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/comm/">
+                                <div>
+                                    <p>
+                                        <strong>人际交往</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/manage/">
+                                <div>
+                                    <p>
+                                        <strong>金钱管理</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/healthy/">
+                                <div>
+                                    <p>
+                                        <strong>健康生活</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete(success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/clothes/">
+                                <div>
+                                    <p>
+                                        <strong>穿衣推荐</strong>
+                                        <span class="pull-right text-muted">20% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/eat/">
+                                <div>
+                                    <p>
+                                        <strong>饮食推荐</strong>
+                                        <span class="pull-right text-muted">60% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/talk/">
+                                <div>
+                                    <p>
+                                        <strong>自我对话</strong>
+                                        <span class="pull-right text-muted">80% </span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>用户 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/life/user_index/profile1/"><i class="fa fa-fw fa-user"></i> 资料</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> 收件箱</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> 设置</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/life/login_out/"><i class="fa fa-fw fa-power-off"></i> 登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="/life/user_index/"><i class="fa fa-fw fa-dashboard"></i> 主页</a>
+                    </li>
+                    <li>
+                        <a href="/life/plan/"><i class="fa fa-fw fa-bar-chart-o"></i>日程计划</a>
+                    </li>
+                    <li>
+                        <a href="/life/comm/"><i class="fa fa-fw fa-table"></i> 人际交往</a>
+                    </li>
+                    <li>
+                        <a href="/life/manage/"><i class="fa fa-fw fa-edit"></i> 金钱管理</a>
+                    </li>
+                    <li>
+                        <a href="/life/healthy/"><i class="fa fa-fw fa-desktop"></i> 健康生活</a>
+                    </li>
+                    <li class="active">
+                        <a href="/life/clothes/"><i class="fa fa-fw fa-wrench"></i> 穿衣推荐</a>
+                    </li>
+                    <li>
+                        <a href="/life/eat/"><i class="fa fa-fw fa-arrows-v"></i> 饮食推荐</a>
+                    </li>
+                    <li>
+                        <a href="/life/talk/"><i class="fa fa-fw fa-file"></i> 自我对话</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            穿衣推荐<small>Dressing recommendation</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="/life/user_index/">主页</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-wrench"></i> 穿衣推荐
+                                	<!--setInterval实时显示时间-->
+                                <span id="time"></span>
+                                <script>
+                                    function mytime(){
+                                        var a = new Date();
+                                        var b = a.toLocaleTimeString();
+                                        var c = a.toLocaleDateString();
+                                     document.getElementById("time").innerHTML = c+"&nbsp"+b;
+                                     }
+                                    setInterval(function() {mytime()},1000);
+                                </script>
+
+                            </li>
+                        </ol>
+
+                        <!-- 营销灰屏 -->
+                        <div class="jumbotron">
+                            <h3>好好搭配你的衣服！</h3>
+                            <p>新的一天，新的自己</p>
+                        </div>
+                        <!-- 天气 -->
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="page-header">
+                                    <h3>天气状况</h3>
+                                </div>
+                                <div class="weather">
+                                    <iframe width="200" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe>
+                                </div>
+                                <div>
+                                    <div class="formweather" style="height: 220px; padding: 40px;font-weight: 500;">
+                                                                            <div id="quote-box" style="margin: 15px 0;">
+                                        <h4>穿衣Tips</h4>
+                                        <p id="quote-text"></p>
+                                    </div>
+                                    <button id="new-quote-button" class="btn btn-default">下一个</button>
+                                      <script>
+                                        // 创建一个包含多个tips的数组
+                                        const quotations = [
+                                          "配色塑造氛围，服装款式打造好身材。",
+                                          "衣裤同色，颜色的延伸可以防止身材五五分。",
+                                          "了解自己的体型，根据自己的体型选择适合的款式。",
+                                          "若是你的肤色偏暖色调，那么打底衫的颜色可以选择大地色系、蜜粽色系。",
+                                          "单色组合显得干净利索不拖沓，在视觉上有延伸的感觉。",
+                                          "作为日常使用的颜色、像是全黑、全白、棕色、灰色、橄榄绿等大地色系深浅搭配，经典还不容易出错。",
+                                          "相邻色最大的魅力便在于色彩之间的相近效果，颜色的贴近以及配色效果的和谐、养眼。",
+                                          "互补色的搭配可以产生华丽、跳跃、浓郁的审美感觉，在穿搭中点缀是最聪明的做法。",
+                                          // 添加更多穿衣tips
+                                        ];
+
+                                        // 获取盒子和新tips按钮的引用
+                                        const quoteBox = document.getElementById("quote-box");
+                                        const quoteText = document.getElementById("quote-text");
+                                        const newQuoteButton = document.getElementById("new-quote-button");
+
+                                        // 用于随机生成的函数
+                                        function generateRandomQuote() {
+                                          const randomIndex = Math.floor(Math.random() * quotations.length);
+                                          const randomQuote = quotations[randomIndex];
+                                          quoteText.innerHTML = randomQuote;
+                                        }
+
+                                        // 初始化页面，显示随机的tips
+                                        generateRandomQuote();
+
+                                        // 为按钮添加点击事件处理程序，用于显示新的tips
+                                        newQuoteButton.addEventListener("click", generateRandomQuote);
+                                      </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--上传图片-->
+                            <div class="col-sm-4">
+                                <div class="page-header">
+                                    <h3>上传你的衣服</h3>
+                                </div>
+                                <div class="clothe">
+                                    <form action="#" class="formweather formclothe">
+                                        <label>衣物简称</label>
+                                        <input class="form-control" placeholder="如：黑色字母短袖">
+                                        <label>衣物类别</label>
+                                        <select class="form-control">
+                                            <option value="上装">上装</option>
+                                            <option value="下装">下装</option>
+                                            <option value="外套">外套</option>
+                                        </select>
+                                        <label>薄厚程度</label>
+                                        <select class="form-control">
+                                            <option value="薄">薄</option>
+                                            <option value="中薄">中薄</option>
+                                            <option value="适薄">适中</option>
+                                            <option value="中厚">中厚</option>
+                                            <option value="厚">厚</option>
+                                            <option value="特厚">特厚</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-default">确定</button>
+                                        <button type="reset" class="btn btn-default">重置</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="page-header">
+                                    <h3>穿衣公式(用27℃减去当前温度)</h3>
+                                </div>
+                                <ul class="list-group">
+                                 <li class="list-group-item content">薄的棉毛衫相当于1°C</li>
+                                 <li class="list-group-item content">厚的棉毛衫相当于2°C</li>
+                                 <li class="list-group-item content">加绒衣服、薄外套是3°C</li>
+                                 <li class="list-group-item content">厚羊毛衫相当于4°C</li>
+                                 <li class="list-group-item content">稍厚的弹力絮棉衣是5°C</li>
+                                 <li class="list-group-item content">薄款羽绒服相当于6°C</li>
+                                 <li class="list-group-item content">厚款羽绒服相当于9°C</li>
+                                </ul>
+                                <style>
+                                    .content:nth-child(odd){background-color:#e2f2d3;}
+                                </style>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header">
+                                <h3>穿搭推荐</h3>
+                            </div>
+                            <div class="panel panel-red  clothesact">
+                                <div class="panel-heading">提交天气数据以查看穿衣推荐</div>
+                                <div class="panel-body clotheshow"></div>
+                                <div class="panel-footer">
+                                    <button type="submit" class="btn btn-default">换一个</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="page-header">
+                                <h3>你的最爱</h3>
+                            </div>
+                            <div class="panel panel-green">
+                                <div class="panel-heading">显示出现最多的服装关键词</div>
+                                <div class="clochart"><canvas id="myChart"></canvas></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        var canvas = document.getElementById('myChart');
+        var ctx = canvas.getContext('2d');
+        var data = [30, 50, 80, 120, 180, 220];
+        var colors = ['#5589c5', '#a1cef8', '#5589c5', '#a1cef8', '#5589c5', '#a1cef8'];
+        function drawBarChart(data, colors) {
+            var barWidth = 50;
+            var barGap = 10;
+            var chartWidth = (barWidth + barGap) * data.length - barGap;
+            var chartHeight = 300;
+            canvas.width = chartWidth;
+            canvas.height = chartHeight;
+            for (var i = 0; i < data.length; i++) {
+                var x = i * (barWidth + barGap);
+                var y = chartHeight - data[i];
+                ctx.fillStyle = colors[i];
+                ctx.fillRect(x, y, barWidth, data[i]);
+            }
+        }
+        drawBarChart(data, colors);
+    </script>
+</body>
+
+</html>
